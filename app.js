@@ -43,4 +43,20 @@ program
         fs.writeFileSync(FILE, JSON.stringify(data, null, 2))
     })
 
+program
+    .command("list")
+    .action(() => {
+        console.table(data.expenses)
+    })
+
+program
+    .command("summary")
+    .action(() => {
+        let total = 0
+        for (let i = 0; i < data.expenses.length; i++) {
+            total += parseInt(data.expenses[i].amount)
+        }
+        console.log(`Total expenses: $${total}`)
+    })
+
 program.parse()
